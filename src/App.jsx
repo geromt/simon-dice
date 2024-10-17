@@ -1,36 +1,36 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 
-const Rectangle  = ({ children, index}) => {
-  return (
-  <div className='w-32 h-32 border-solid border-2 border-stone-50 rounded-md place-items-center grid grid-cols-1'>
-      {index}
-  </div>
-  )
-}
+import { SimonButton } from  "./components/SimonButton.jsx"
 
 
 function App() {
-  const [board, setBoard] = useState(Array(9).fill(null))
+  const [board, setBoard] = useState(Array(4).fill(null))
+  const [sequence, setSequence] = useState([0,  1, 2, 3])
+  const colors =  ['bg-red-300', 'bg-green-300', 'bg-blue-300', 'bg-yellow-300']
+  const pressColors = ['bg-red-900', 'bg-green-900', 'bg-blue-900', 'bg-yellow-900']
+
+  const runSequence = () =>  {
+    sequence.forEach(elem => {
+      
+    });
+  }
 
   return (
     <main className='flex flex-col'>
       <h1 className='text-tl mb-4'>
         Simón Dice
       </h1>
-      <section className='grid grid-cols-3 gap-5'>
+      <section className='grid grid-cols-2 gap-5'>
         {
           board.map((_, index) => {
             return ( 
-              <Rectangle key={index} index={index}>
-                {index}
-              </Rectangle>
+              <SimonButton key={index} index={index} color={colors[index]}/>
             )
           })
         }
       </section>
+      <button onClick={runSequence}>Run Sequence</button>
       
     </main>
   )
